@@ -1,320 +1,440 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Spiritual Business Coaching Application | Luana Spirits</title>
+<title>Apply for Spiritual Business Coaching | Luana Spirits</title>
+<meta name="description" content="Apply to work 1:1 with Luana Spirits to build your spiritual business and sign your first clients.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg:#f7f3fb; --card:#ffffff; --ink:#2a2140; --muted:#6b6283;
-    --accent:#6b46a8; --accent-dark:#4f3283; --soft:#ece4f7; --line:#ddd3ec; --error:#b3261e;
+  :root {
+    color-scheme: dark;
+    --bg: #1a0a20; --plum: #2a1233; --plum2: #3d1f47; --plum3: #5b2f6b;
+    --violet: #8b5fa8; --lav: #c9b3d9; --gold: #c9a55f; --gold2: #e3c27f;
+    --text: #efe4f3; --soft: #bfaec8; --line: rgba(227,194,127,.22);
+    --card: rgba(255,255,255,.045); --err: #f2a7a7;
+    --serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    --sans: 'Jost', 'Helvetica Neue', Arial, sans-serif;
+    --mono: 'DM Mono', ui-monospace, Menlo, monospace;
   }
-  *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;font-size:16px;line-height:1.55}
-  .wrap{max-width:680px;margin:0 auto;padding:40px 20px 80px}
-  header{text-align:center;margin-bottom:28px}
-  .brand{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:600}
-  h1{font-family:"Cormorant Garamond",serif;font-weight:600;font-size:40px;line-height:1.1;margin:10px 0 14px}
-  .intro{color:var(--muted);max-width:540px;margin:0 auto}
-  .how{background:var(--soft);border-radius:14px;padding:16px 18px;margin:24px 0 8px;font-size:15px}
-  .how b{color:var(--accent-dark)}
-  form{margin-top:16px}
-  fieldset{border:1px solid var(--line);background:var(--card);border-radius:16px;padding:22px 20px 8px;margin:0 0 18px}
-  legend{font-family:"Cormorant Garamond",serif;font-size:24px;font-weight:600;padding:0 8px}
-  .q{margin-bottom:22px}
-  .q > label, .q > .label{display:block;font-weight:600;margin-bottom:8px}
-  .req{color:var(--accent)}
-  .hint{display:block;font-weight:400;color:var(--muted);font-size:14px;margin-top:2px}
-  input[type=text],input[type=email],textarea{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:10px;font:inherit;color:inherit;background:#fdfcff}
-  textarea{min-height:96px;resize:vertical}
-  input:focus,textarea:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:transparent}
-  .opt{display:flex;gap:10px;align-items:flex-start;padding:9px 12px;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;cursor:pointer;background:#fdfcff}
-  .opt:hover{border-color:var(--accent)}
-  .opt input{margin-top:4px;accent-color:var(--accent)}
-  .q.invalid input[type=text],.q.invalid input[type=email],.q.invalid textarea,.q.invalid .opt{border-color:var(--error)}
-  .err{color:var(--error);font-size:14px;margin-top:4px;display:none}
-  .q.invalid .err{display:block}
-  .actions{text-align:center;margin-top:10px}
-  button{font:inherit;font-weight:600;border:0;border-radius:999px;padding:15px 30px;cursor:pointer}
-  .primary{background:var(--accent);color:#fff;font-size:17px;width:100%;max-width:420px}
-  .primary:hover{background:var(--accent-dark)}
-  .primary:disabled{opacity:.6;cursor:wait}
-    #copy{margin-top:4px}
-  .secondary{background:transparent;color:var(--accent-dark);text-decoration:underline;padding:10px}
-  .note{color:var(--muted);font-size:14px;margin-top:12px}
-  .done{display:none;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px 22px;text-align:center;margin-top:18px}
-  .done h2{font-family:"Cormorant Garamond",serif;font-size:30px;margin:0 0 8px}
-  .done .addr{font-weight:600;color:var(--accent-dark);word-break:break-all}
-  .toast{color:var(--accent-dark);font-weight:600;min-height:22px;margin-top:6px}
-  footer{text-align:center;color:var(--muted);font-size:13px;margin-top:30px}
+  * { box-sizing: border-box; }
+  html { background: var(--bg); }
+  body {
+    margin: 0; font-family: var(--sans); font-weight: 300; font-size: 17px; line-height: 1.6;
+    color: var(--text); background: radial-gradient(ellipse at 20% 0%, #4a2458 0%, var(--plum) 40%, var(--bg) 100%) fixed var(--bg);
+    min-height: 100vh;
+  }
+  #stars { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+  .star { position: absolute; border-radius: 50%; background: #fff; animation: tw 4s infinite ease-in-out; }
+  @keyframes tw { 0%,100% { opacity: .15 } 50% { opacity: .9 } }
+  @media (prefers-reduced-motion: reduce) { .star { animation: none; opacity: .5 } .step { animation: none !important } }
+  b, strong { font-weight: 500; color: var(--gold2); }
+  em { font-family: var(--serif); font-style: italic; }
+  a { color: var(--gold2); }
+
+  .wrap { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; padding-inline: 20px; }
+  main { min-height: 78vh; padding-top: 34px; }
+  .eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: 3.5px; text-transform: uppercase; color: var(--gold2); }
+  h1, h2 { font-family: var(--serif); font-weight: 500; margin: 0; text-wrap: balance; }
+  h1 { font-size: clamp(34px, 7.5vw, 54px); line-height: 1.08; }
+  h1 em, h2 em { color: var(--gold2); }
+  h2 { font-size: clamp(24px, 5vw, 32px); line-height: 1.22; }
+  .lead { font-family: var(--serif); font-style: italic; color: var(--lav); font-size: clamp(17px, 3.2vw, 20px); line-height: 1.5; }
+  .muted { color: var(--soft); font-size: 15px; }
+  .rule { height: 2px; width: 100%; background: linear-gradient(90deg, var(--gold), var(--violet) 60%, transparent); margin: 22px 0; }
+
+  /* progress */
+  .top { display: flex; align-items: center; gap: 14px; margin-bottom: 26px; min-height: 36px; }
+  .back { background: none; border: 1px solid var(--line); color: var(--gold2); border-radius: 30px; padding: 6px 14px; font: 500 13px var(--mono); letter-spacing: 1px; cursor: pointer; }
+  .back[hidden] { display: none; }
+  .bar { flex: 1; height: 4px; border-radius: 4px; background: rgba(255,255,255,.08); overflow: hidden; }
+  .bar i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--gold), var(--violet)); transition: width .35s ease; }
+  .count { font-family: var(--mono); font-size: 12px; color: var(--soft); font-variant-numeric: tabular-nums; min-width: 42px; text-align: right; }
+
+  .step { display: none; flex-direction: column; gap: 18px; }
+  .step.on { display: flex; animation: rise .35s ease; }
+  @keyframes rise { from { opacity: 0; transform: translateY(10px) } to { opacity: 1; transform: none } }
+  .hint { font-family: var(--mono); font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--soft); }
+
+  .opts { display: flex; flex-direction: column; gap: 10px; }
+  .opt { text-align: left; width: 100%; font: 400 16.5px/1.45 var(--sans); color: var(--text); background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; cursor: pointer; display: flex; gap: 12px; align-items: center; transition: border-color .2s, background .2s, transform .15s; }
+  .opt:hover { border-color: var(--gold2); }
+  .opt:active { transform: scale(.99); }
+  .opt .k { flex: none; width: 26px; height: 26px; border-radius: 8px; border: 1px solid var(--line); display: grid; place-items: center; font: 500 12px var(--mono); color: var(--gold2); }
+  .opt[aria-pressed="true"] { border-color: var(--gold2); background: rgba(227,194,127,.12); }
+  .opt[aria-pressed="true"] .k { background: var(--gold); color: var(--plum); border-color: var(--gold); }
+
+  label.f { display: flex; flex-direction: column; gap: 6px; font: 400 13px var(--mono); letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold2); }
+  input, textarea { width: 100%; font: 300 17px var(--sans); color: var(--text); background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 13px 15px; text-transform: none; letter-spacing: 0; }
+  textarea { min-height: 120px; resize: vertical; line-height: 1.5; }
+  input::placeholder, textarea::placeholder { color: rgba(191,174,200,.55); }
+  input:focus, textarea:focus, .opt:focus-visible, .btn:focus-visible, .back:focus-visible { outline: 2px solid var(--gold2); outline-offset: 2px; }
+  .err { color: var(--err); font-size: 14.5px; min-height: 20px; }
+
+  .btn { align-self: flex-start; display: inline-flex; align-items: center; gap: 10px; font: 500 16px var(--sans); letter-spacing: .6px; color: #fff; background: linear-gradient(135deg, var(--gold), var(--violet)); border: 0; border-radius: 40px; padding: 14px 30px; cursor: pointer; box-shadow: 0 8px 30px rgba(201,165,95,.25); transition: transform .2s, box-shadow .2s, opacity .2s; }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(201,165,95,.35); }
+  .btn:disabled { opacity: .6; cursor: wait; transform: none; }
+  .btn small { font: 400 12px var(--mono); opacity: .85; }
+  .pills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pill { font-family: var(--mono); font-size: 12px; letter-spacing: 1px; padding: 5px 12px; border-radius: 30px; background: var(--plum3); color: var(--gold2); }
+
+  /* review */
+  .review { display: flex; flex-direction: column; gap: 2px; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+  .row { background: var(--card); padding: 12px 16px; display: grid; grid-template-columns: 1fr auto; gap: 2px 12px; align-items: start; }
+  .row .q { font: 400 11.5px var(--mono); letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold2); }
+  .row .a { grid-column: 1; white-space: pre-wrap; word-break: break-word; }
+  .row button { grid-row: 1 / span 2; grid-column: 2; background: none; border: 0; color: var(--lav); font: 400 13px var(--mono); text-decoration: underline; cursor: pointer; padding: 4px; }
+
+  footer { position: relative; z-index: 1; text-align: center; padding-block: 60px 50px; color: var(--soft); font-size: 14px; display: flex; flex-direction: column; gap: 10px; align-items: center; }
+  footer .sig { font-family: var(--serif); font-size: 26px; color: var(--gold2); }
+  footer .role { font-family: var(--mono); font-size: 11.5px; letter-spacing: 2px; text-transform: uppercase; }
+  footer .links { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 18px; }
+  footer .links a { text-decoration: none; }
+  footer .links a:hover { text-decoration: underline; }
+  footer .email { user-select: all; color: var(--gold2); }
+  footer .legal { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 16px; font-size: 13px; }
+  footer .legal a { color: var(--soft); }
+  footer .fine { font-size: 12.5px; max-width: 60ch; line-height: 1.6; opacity: .85; margin: 0; }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header>
-    <div class="brand">Luana Spirits 🌙</div>
-    <h1>Spiritual Business Coaching Application</h1>
-    <p class="intro">Hi beautiful soul, welcome! 💜 This application helps me get to know you, your gifts, and where you are in building your spiritual business. I only take on a small number of one-to-one clients so I can give each of them my full attention, so please answer honestly. There are no wrong answers.</p>
-    <div class="how"><b>How it works:</b> fill in the questions below, then tap <b>Send my application</b>. Your answers come straight to my inbox, and I'll personally reply within 48 hours if it feels like an aligned fit.</div>
-  </header>
+<div id="stars" aria-hidden="true"></div>
+
+<main class="wrap">
+  <div class="top">
+    <button class="back" id="back" type="button" hidden>← Back</button>
+    <div class="bar" aria-hidden="true"><i id="prog"></i></div>
+    <div class="count" id="count" aria-live="polite"></div>
+  </div>
 
   <form id="app" novalidate>
-    <fieldset>
-      <legend>About you</legend>
-      <div class="q" data-required>
-        <label for="name">Full name <span class="req">*</span></label>
-        <input type="text" id="name" name="Full name" autocomplete="name">
-        <div class="err">Please share your name.</div>
-      </div>
-      <div class="q" data-required>
-        <label for="handle">Instagram or TikTok handle <span class="req">*</span></label>
-        <input type="text" id="handle" name="Instagram or TikTok handle" placeholder="@yourhandle">
-        <div class="err">Please add your handle so I can find you.</div>
-      </div>
-      <div class="q">
-        <label for="tz">Where are you located / what time zone are you in?</label>
-        <input type="text" id="tz" name="Location / time zone">
-      </div>
-    </fieldset>
+    <!-- intro -->
+    <section class="step on" data-id="intro">
+      <div class="eyebrow">Spiritual Business Coaching</div>
+      <h1>Ready to turn your gift into <em>a soul-led business?</em></h1>
+      <p class="lead">This short application helps me see where you are, so I can tell you exactly how I'd support you.</p>
+      <div class="pills"><span class="pill">12 quick questions</span><span class="pill">About 3 minutes</span></div>
+      <p class="muted">I only work with a small number of 1:1 clients so each one gets my full attention. Answer honestly, beautiful soul. There are no wrong answers.</p>
+      <button class="btn" type="button" data-next>Begin my application</button>
+    </section>
 
-    <fieldset>
-      <legend>Your gifts</legend>
-      <div class="q" data-required data-group="gifts">
-        <div class="label">What spiritual gifts or services do you want to offer? <span class="req">*</span><span class="hint">Choose all that apply.</span></div>
-        <label class="opt"><input type="checkbox" name="gifts" value="Intuitive / psychic readings">Intuitive / psychic readings</label>
-        <label class="opt"><input type="checkbox" name="gifts" value="Tarot or oracle readings">Tarot or oracle readings</label>
-        <label class="opt"><input type="checkbox" name="gifts" value="Mediumship">Mediumship</label>
-        <label class="opt"><input type="checkbox" name="gifts" value="Energy healing">Energy healing</label>
-        <label class="opt"><input type="checkbox" name="gifts" value="Twin flame or relationship coaching">Twin flame or relationship coaching</label>
-        <label class="opt"><input type="checkbox" name="gifts" value="Spiritual / life coaching">Spiritual / life coaching</label>
-        <label class="opt"><input type="checkbox" name="gifts" value="Bodywork or holistic practice">Bodywork or holistic practice</label>
-        <label class="opt"><input type="checkbox" name="gifts" value="Other">Other</label>
-        <div class="err">Please choose at least one.</div>
-      </div>
-      <div class="q" data-required>
-        <label for="journey">Tell me a little about your gift and your journey so far. <span class="req">*</span></label>
-        <textarea id="journey" name="Your gift and journey"></textarea>
-        <div class="err">Please share a little about your journey.</div>
-      </div>
-    </fieldset>
+    <!-- 1 contact -->
+    <section class="step" data-id="contact" data-q>
+      <div class="hint">Let's start with you</div>
+      <h2>Where can I <em>reach you?</em></h2>
+      <label class="f">First and last name<input id="name" autocomplete="name" placeholder="Your name"></label>
+      <label class="f">Email<input id="email" type="email" autocomplete="email" inputmode="email" placeholder="you@email.com"></label>
+      <label class="f">Instagram or TikTok<input id="handle" autocomplete="off" autocapitalize="off" placeholder="@yourhandle"></label>
+      <div class="err" role="alert"></div>
+      <button class="btn" type="button" data-next>Continue</button>
+    </section>
 
-    <fieldset>
-      <legend>Where you are right now</legend>
-      <div class="q" data-required data-group="stage">
-        <div class="label">Which best describes your business right now? <span class="req">*</span></div>
-        <label class="opt"><input type="radio" name="stage" value="Haven't started, haven't charged yet">I haven't started yet and haven't charged for my spiritual work</label>
-        <label class="opt"><input type="radio" name="stage" value="Some sessions, mostly free">I've done some sessions, but mostly for free</label>
-        <label class="opt"><input type="radio" name="stage" value="A few paying clients">I've had a few paying clients</label>
-        <label class="opt"><input type="radio" name="stage" value="Consistent paying clients, want to grow">I have consistent paying clients and want to grow</label>
-        <div class="err">Please choose one.</div>
+    <!-- 2 gifts (multi) -->
+    <section class="step" data-id="gifts" data-q data-multi="Gifts / services">
+      <div class="hint">Choose all that apply</div>
+      <h2>What gifts or services do you <em>want to offer?</em></h2>
+      <div class="opts">
+        <button type="button" class="opt">Intuitive or psychic readings</button>
+        <button type="button" class="opt">Tarot or oracle readings</button>
+        <button type="button" class="opt">Mediumship</button>
+        <button type="button" class="opt">Energy healing</button>
+        <button type="button" class="opt">Twin flame or relationship coaching</button>
+        <button type="button" class="opt">Spiritual or life coaching</button>
+        <button type="button" class="opt">Bodywork or holistic practice</button>
+        <button type="button" class="opt">Something else</button>
       </div>
-      <div class="q" data-required data-group="content">
-        <div class="label">How do you feel about showing up on social media and creating content? <span class="req">*</span></div>
-        <label class="opt"><input type="radio" name="content" value="Already post regularly">I already post regularly</label>
-        <label class="opt"><input type="radio" name="content" value="Posted a little, want consistency">I've posted a little but want to be more consistent</label>
-        <label class="opt"><input type="radio" name="content" value="Haven't started, ready to">I haven't started, but I'm ready to</label>
-        <label class="opt"><input type="radio" name="content" value="Not comfortable being visible">I'm not comfortable being visible online</label>
-        <div class="err">Please choose one.</div>
-      </div>
-      <div class="q" data-required>
-        <label for="block">What feels like the biggest thing holding you back right now? <span class="req">*</span></label>
-        <textarea id="block" name="Biggest block"></textarea>
-        <div class="err">Please share what's holding you back.</div>
-      </div>
-    </fieldset>
+      <div class="err" role="alert"></div>
+      <button class="btn" type="button" data-next>Continue</button>
+    </section>
 
-    <fieldset>
-      <legend>Your vision</legend>
-      <div class="q" data-required data-group="model">
-        <div class="label">How do you see yourself working with clients? <span class="req">*</span><span class="hint">Choose all that apply.</span></div>
-        <label class="opt"><input type="checkbox" name="model" value="One-time sessions or readings">One-time sessions or readings</label>
-        <label class="opt"><input type="checkbox" name="model" value="Packages or multi-session programs">Packages or multi-session programs</label>
-        <label class="opt"><input type="checkbox" name="model" value="Longer-term coaching containers">Longer-term coaching containers</label>
-        <label class="opt"><input type="checkbox" name="model" value="Memberships or subscriptions">Memberships or subscriptions</label>
-        <label class="opt"><input type="checkbox" name="model" value="Courses or digital products">Courses or digital products</label>
-        <label class="opt"><input type="checkbox" name="model" value="Open to guidance">I'm open to guidance on what's best</label>
-        <div class="err">Please choose at least one.</div>
+    <!-- 3 stage -->
+    <section class="step" data-id="stage" data-q data-single="Business stage">
+      <h2>Where is your <em>business right now?</em></h2>
+      <div class="opts">
+        <button type="button" class="opt">I haven't charged for my spiritual work yet</button>
+        <button type="button" class="opt">I've done sessions, but mostly for free</button>
+        <button type="button" class="opt">I've had a few paying clients</button>
+        <button type="button" class="opt">I have consistent paying clients and want to grow</button>
       </div>
-      <div class="q" data-required>
-        <label for="goal">What would make the next 90 days a huge success for you? <span class="req">*</span></label>
-        <textarea id="goal" name="90-day success"></textarea>
-        <div class="err">Please share your 90-day vision.</div>
-      </div>
-    </fieldset>
+    </section>
 
-    <fieldset>
-      <legend>Commitment and readiness</legend>
-      <div class="q" data-required data-group="commit">
-        <div class="label">My business coaching is a 3-month container with two coaching calls a month and voice memo support on WhatsApp between calls. Are you able to commit to 3 months right now? <span class="req">*</span></div>
-        <label class="opt"><input type="radio" name="commit" value="Yes, ready to commit">Yes, I'm ready to commit</label>
-        <label class="opt"><input type="radio" name="commit" value="Interested but not sure">I'm interested but not sure yet</label>
-        <label class="opt"><input type="radio" name="commit" value="No, not right now">No, not right now</label>
-        <div class="err">Please choose one.</div>
+    <!-- 4 content -->
+    <section class="step" data-id="content" data-q data-single="Content comfort">
+      <h2>How do you feel about <em>showing up on social media?</em></h2>
+      <div class="opts">
+        <button type="button" class="opt">I already post regularly</button>
+        <button type="button" class="opt">I've posted a little and want to be consistent</button>
+        <button type="button" class="opt">I haven't started, but I'm ready to</button>
+        <button type="button" class="opt">I'm not comfortable being visible online</button>
       </div>
-      <div class="q" data-required data-group="start">
-        <div class="label">When would you like to start? <span class="req">*</span></div>
-        <label class="opt"><input type="radio" name="start" value="As soon as possible">As soon as possible</label>
-        <label class="opt"><input type="radio" name="start" value="Within 30 days">Within the next 30 days</label>
-        <label class="opt"><input type="radio" name="start" value="In 1 to 3 months">In 1 to 3 months</label>
-        <label class="opt"><input type="radio" name="start" value="Just exploring">I'm just exploring for now</label>
-        <div class="err">Please choose one.</div>
-      </div>
-      <div class="q" data-required data-group="invested">
-        <div class="label">Have you invested in coaching, mentorship, courses or healing support before? <span class="req">*</span></div>
-        <label class="opt"><input type="radio" name="invested" value="Yes, more than once">Yes, more than once</label>
-        <label class="opt"><input type="radio" name="invested" value="Yes, once">Yes, once</label>
-        <label class="opt"><input type="radio" name="invested" value="Not yet, ready to invest">Not yet, but I'm ready to invest in myself</label>
-        <label class="opt"><input type="radio" name="invested" value="No, not looking to invest">No, and I'm not looking to invest right now</label>
-        <div class="err">Please choose one.</div>
-      </div>
-      <div class="q" data-required data-group="ready">
-        <div class="label">If we're an aligned fit, are you in a position to invest in yourself and your business right now? <span class="req">*</span></div>
-        <label class="opt"><input type="radio" name="ready" value="Yes">Yes</label>
-        <label class="opt"><input type="radio" name="ready" value="Yes, with a payment plan">Yes, with a payment plan</label>
-        <label class="opt"><input type="radio" name="ready" value="Not at this time">Not at this time</label>
-        <div class="err">Please choose one.</div>
-      </div>
-      <div class="q" data-required>
-        <label for="why">Why is now the right time for you? <span class="req">*</span></label>
-        <textarea id="why" name="Why now"></textarea>
-        <div class="err">Please share why now feels right.</div>
-      </div>
-      <div class="q">
-        <label for="else">Is there anything else you'd like me to know?</label>
-        <textarea id="else" name="Anything else"></textarea>
-      </div>
-    </fieldset>
+    </section>
 
-    <div class="actions">
-      <button type="submit" class="primary">Send my application 💜</button>
-      <p class="note">Your answers go straight to my inbox. Nothing else to do!</p>
-    </div>
+    <!-- 5 model (multi) -->
+    <section class="step" data-id="model" data-q data-multi="How they want to work with clients">
+      <div class="hint">Choose all that apply</div>
+      <h2>How do you see yourself <em>working with clients?</em></h2>
+      <div class="opts">
+        <button type="button" class="opt">One-time sessions or readings</button>
+        <button type="button" class="opt">Packages or multi-session programs</button>
+        <button type="button" class="opt">Longer-term coaching containers</button>
+        <button type="button" class="opt">Memberships or subscriptions</button>
+        <button type="button" class="opt">Courses or digital products</button>
+        <button type="button" class="opt">I'm open to guidance on what's best</button>
+      </div>
+      <div class="err" role="alert"></div>
+      <button class="btn" type="button" data-next>Continue</button>
+    </section>
+
+    <!-- 6 block -->
+    <section class="step" data-id="block" data-q data-text="Biggest block">
+      <h2>What feels like the biggest thing <em>holding you back?</em></h2>
+      <textarea placeholder="A sentence or two is perfect"></textarea>
+      <div class="err" role="alert"></div>
+      <button class="btn" type="button" data-next>Continue</button>
+    </section>
+
+    <!-- 7 goal -->
+    <section class="step" data-id="goal" data-q data-text="90-day success">
+      <h2>What would make the next 90 days <em>a huge success?</em></h2>
+      <textarea placeholder="Dream a little. What would be different?"></textarea>
+      <div class="err" role="alert"></div>
+      <button class="btn" type="button" data-next>Continue</button>
+    </section>
+
+    <!-- 8 commit -->
+    <section class="step" data-id="commit" data-q data-single="Can commit to 3 months">
+      <div class="hint">How it works</div>
+      <h2>My coaching is a <em>3-month container.</em></h2>
+      <p class="muted">Two 1:1 coaching calls a month, plus voice memo support on WhatsApp between calls. Can you commit to 3 months right now?</p>
+      <div class="opts">
+        <button type="button" class="opt">Yes, I'm ready to commit</button>
+        <button type="button" class="opt">I'm interested, but not sure yet</button>
+        <button type="button" class="opt">Not right now</button>
+      </div>
+    </section>
+
+    <!-- 9 start -->
+    <section class="step" data-id="start" data-q data-single="Start timeline">
+      <h2>When would you <em>like to start?</em></h2>
+      <div class="opts">
+        <button type="button" class="opt">As soon as possible</button>
+        <button type="button" class="opt">Within the next 30 days</button>
+        <button type="button" class="opt">In 1 to 3 months</button>
+        <button type="button" class="opt">I'm just exploring for now</button>
+      </div>
+    </section>
+
+    <!-- 10 invested -->
+    <section class="step" data-id="invested" data-q data-single="Invested in support before">
+      <h2>Have you invested in coaching, mentorship or healing <em>support before?</em></h2>
+      <div class="opts">
+        <button type="button" class="opt">Yes, more than once</button>
+        <button type="button" class="opt">Yes, once</button>
+        <button type="button" class="opt">Not yet, but I'm ready to invest in myself</button>
+        <button type="button" class="opt">No, and I'm not looking to right now</button>
+      </div>
+    </section>
+
+    <!-- 11 ready -->
+    <section class="step" data-id="ready" data-q data-single="Ready to invest now">
+      <h2>If we're aligned, are you ready to <em>invest in your business now?</em></h2>
+      <div class="opts">
+        <button type="button" class="opt">Yes</button>
+        <button type="button" class="opt">Yes, with a payment plan</button>
+        <button type="button" class="opt">Not at this time</button>
+      </div>
+    </section>
+
+    <!-- 12 why now -->
+    <section class="step" data-id="why" data-q data-text="Why now">
+      <h2>Why does <em>now</em> feel like the right time?</h2>
+      <textarea placeholder="Share anything else you'd like me to know too"></textarea>
+      <div class="err" role="alert"></div>
+      <button class="btn" type="button" data-next>Review my answers</button>
+    </section>
+
+    <!-- review -->
+    <section class="step" data-id="review">
+      <div class="hint">Last step</div>
+      <h2>Does this <em>all look good?</em></h2>
+      <p class="muted">Tap edit to change anything, then send it my way.</p>
+      <div class="review" id="review"></div>
+      <div class="err" role="alert" id="sendErr"></div>
+      <button class="btn" type="submit" id="send">Submit my application 💜</button>
+    </section>
+
+    <!-- done -->
+    <section class="step" data-id="done">
+      <div class="eyebrow">Application received</div>
+      <h1>Thank you, <em>beautiful soul.</em></h1>
+      <p class="lead">Your application is in my inbox. I'll personally read every word and reach out by email within 48 hours if it feels like an aligned fit.</p>
+      <div class="rule"></div>
+      <p class="muted">While you wait, come say hi on <a href="https://www.instagram.com/luanaspirits" target="_blank" rel="noopener">Instagram</a> or <a href="https://www.tiktok.com/@luanaspirits" target="_blank" rel="noopener">TikTok</a>. 🌙</p>
+    </section>
   </form>
+</main>
 
-  <div class="done" id="done">
-    <h2>Thank you, beautiful soul! 💜</h2>
-    <p>Your application has been sent straight to my inbox. I'll personally read your answers and reach out within 48 hours if it feels like an aligned fit.</p>
-    <p>Sending you so much love on your journey. 🌙</p>
+<footer class="wrap">
+  <div class="sig">With love, Luana Spirits 💜</div>
+  <div class="role">Psychic Medium · Love &amp; Soul Connection Coach</div>
+  <div class="links">
+    <a href="https://stan.store/LuanaSpirits" target="_blank" rel="noopener">stan.store/LuanaSpirits</a>
+    <a href="https://www.skool.com/union/" target="_blank" rel="noopener">Spiritual Love Healing Academy</a>
+    <a href="https://www.tiktok.com/@luanaspirits" target="_blank" rel="noopener">TikTok</a>
+    <a href="https://www.instagram.com/luanaspirits" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.youtube.com/@luanaspirits/" target="_blank" rel="noopener">YouTube</a>
   </div>
-
-  <div class="done" id="failed">
-    <h2>Hmm, that didn't send</h2>
-    <p>Please check your connection and try again. If it still won't go through, copy your answers and email them to<br><span class="addr" id="addr"></span></p>
-    <button type="button" class="primary" id="retry">Try again</button>
-    <button type="button" class="primary" id="copy" style="background:var(--soft);color:var(--accent-dark);margin-top:10px">Copy my answers</button>
-    <div class="toast" id="toast"></div>
-    <button type="button" class="secondary" id="back">Go back and edit</button>
-  </div>
-
-  <footer>© Luana Spirits</footer>
-</div>
+  <div>Questions? <span class="email">luana@luanaspirits.com</span></div>
+  <nav class="legal" aria-label="Legal">
+    <a href="https://luanaspirits.com/privacy/">Privacy Policy</a>
+    <a href="https://luanaspirits.com/terms/">Terms of Service</a>
+  </nav>
+  <p class="fine">Coaching sessions are for spiritual guidance, personal growth, and educational purposes only. They are not a substitute for medical, psychological, legal, or financial advice. Results vary and depend on your own choices and inner work. Always use your own discernment.</p>
+  <p class="fine">&copy; 2026 Luana Spirits. All rights reserved.</p>
+</footer>
 
 <script>
-  const TO_EMAIL = "Luana@luanaspirits.com";
+(function () {
+  var TO_EMAIL = 'Luana@luanaspirits.com';
 
-  const form = document.getElementById("app");
-  const done = document.getElementById("done");
-  document.getElementById("addr").textContent = TO_EMAIL;
-  let lastBody = "";
-
-  const sections = [
-    ["Full name", () => val("name")],
-    ["Handle", () => val("handle")],
-    ["Location / time zone", () => val("tz")],
-    ["Gifts / services", () => multi("gifts")],
-    ["Gift and journey", () => val("journey")],
-    ["Business stage", () => one("stage")],
-    ["Content comfort", () => one("content")],
-    ["Biggest block", () => val("block")],
-    ["How they want to work with clients", () => multi("model")],
-    ["90-day success", () => val("goal")],
-    ["Can commit to 3 months", () => one("commit")],
-    ["Start timeline", () => one("start")],
-    ["Invested in support before", () => one("invested")],
-    ["Ready to invest now", () => one("ready")],
-    ["Why now", () => val("why")],
-    ["Anything else", () => val("else")]
-  ];
-
-  function val(id){ return document.getElementById(id).value.trim(); }
-  function one(n){ const el = form.querySelector('input[name="'+n+'"]:checked'); return el ? el.value : ""; }
-  function multi(n){ return [...form.querySelectorAll('input[name="'+n+'"]:checked')].map(e => e.value).join("; "); }
-
-  function validate(){
-    let firstBad = null;
-    form.querySelectorAll(".q[data-required]").forEach(q => {
-      const g = q.dataset.group;
-      let ok;
-      if (g) ok = !!q.querySelector("input:checked");
-      else { const f = q.querySelector("input,textarea"); ok = f.value.trim() !== ""; }
-      q.classList.toggle("invalid", !ok);
-      if (!ok && !firstBad) firstBad = q;
-    });
-    if (firstBad) firstBad.scrollIntoView({behavior:"smooth", block:"center"});
-    return !firstBad;
+  // stars
+  var st = document.getElementById('stars');
+  for (var i = 0; i < 70; i++) {
+    var d = document.createElement('div'); d.className = 'star';
+    var z = Math.random() * 2 + 1;
+    d.style.cssText = 'width:' + z + 'px;height:' + z + 'px;left:' + Math.random() * 100 + '%;top:' + Math.random() * 100 + '%;animation-delay:' + Math.random() * 4 + 's';
+    if (Math.random() < .2) d.style.background = '#e3c27f';
+    st.appendChild(d);
   }
 
-  form.addEventListener("input", e => { const q = e.target.closest(".q"); if (q) q.classList.remove("invalid"); });
-  form.addEventListener("change", e => { const q = e.target.closest(".q"); if (q) q.classList.remove("invalid"); });
+  var form = document.getElementById('app');
+  var steps = [].slice.call(form.querySelectorAll('.step'));
+  var qSteps = steps.filter(function (s) { return s.hasAttribute('data-q'); });
+  var backBtn = document.getElementById('back');
+  var prog = document.getElementById('prog');
+  var count = document.getElementById('count');
+  var idx = 0, returnToReview = false;
 
-  function buildBody(){
-    const lines = ["BUSINESS COACHING APPLICATION", ""];
-    sections.forEach(([label, get]) => { lines.push(label.toUpperCase() + ": " + (get() || "(left blank)")); lines.push(""); });
-    lines.push("Sent from the Luana Spirits coaching application page");
-    return lines.join("\n");
-  }
-
-  const failed = document.getElementById("failed");
-  const submitBtn = form.querySelector('button[type="submit"]');
-
-  async function send(){
-    const subject = "Business Coaching Application | " + val("name");
-    const payload = { _subject: subject, _template: "box", _captcha: "false" };
-    sections.forEach(([label, get]) => { payload[label.toUpperCase()] = get() || "(left blank)"; });
-    submitBtn.disabled = true; submitBtn.textContent = "Sending...";
-    try {
-      const res = await fetch("https://formsubmit.co/ajax/" + TO_EMAIL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "Accept": "application/json" },
-        body: JSON.stringify(payload)
+  // letter badges + option behaviour
+  steps.forEach(function (s) {
+    var multi = s.hasAttribute('data-multi'), single = s.hasAttribute('data-single');
+    [].slice.call(s.querySelectorAll('.opt')).forEach(function (o, n) {
+      o.setAttribute('aria-pressed', 'false');
+      o.innerHTML = '<span class="k">' + String.fromCharCode(65 + n) + '</span><span>' + o.innerHTML + '</span>';
+      o.addEventListener('click', function () {
+        if (single) {
+          s.querySelectorAll('.opt').forEach(function (x) { x.setAttribute('aria-pressed', 'false'); });
+          o.setAttribute('aria-pressed', 'true');
+          setTimeout(next, 260);
+        } else if (multi) {
+          o.setAttribute('aria-pressed', o.getAttribute('aria-pressed') === 'true' ? 'false' : 'true');
+          setErr(s, '');
+        }
       });
-      const data = await res.json().catch(() => ({}));
-      if (!res.ok || String(data.success) === "false") throw new Error(data.message || "send failed");
-      form.style.display = "none"; failed.style.display = "none"; done.style.display = "block";
-    } catch (err) {
-      form.style.display = "none"; done.style.display = "none"; failed.style.display = "block";
-    } finally {
-      submitBtn.disabled = false; submitBtn.textContent = "Send my application 💜";
-      window.scrollTo({top:0, behavior:"smooth"});
+    });
+  });
+
+  function picked(s) { return [].slice.call(s.querySelectorAll('.opt[aria-pressed="true"]')).map(function (o) { return o.textContent.slice(1).trim(); }); }
+  function setErr(s, m) { var e = s.querySelector('.err'); if (e) e.textContent = m; }
+  function stepById(id) { return steps.filter(function (s) { return s.dataset.id === id; })[0]; }
+  function val(id) { return document.getElementById(id).value.trim(); }
+
+  function valid(s) {
+    var id = s.dataset.id;
+    if (id === 'contact') {
+      if (!val('name')) return setErr(s, 'Please add your name.'), false;
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val('email'))) return setErr(s, 'Please add a valid email so I can reply to you.'), false;
+      if (!val('handle')) return setErr(s, 'Please add your Instagram or TikTok so I can find you.'), false;
+    } else if (s.hasAttribute('data-multi')) {
+      if (!picked(s).length) return setErr(s, 'Please choose at least one.'), false;
+    } else if (s.hasAttribute('data-single')) {
+      if (!picked(s).length) return false;
+    } else if (s.hasAttribute('data-text')) {
+      if (!s.querySelector('textarea').value.trim()) return setErr(s, 'Just a sentence or two is perfect.'), false;
     }
+    setErr(s, ''); return true;
   }
 
-  form.addEventListener("submit", e => {
+  function show(n) {
+    steps[idx].classList.remove('on');
+    idx = n; var s = steps[idx];
+    s.classList.add('on');
+    var qi = qSteps.indexOf(s);
+    var id = s.dataset.id;
+    backBtn.hidden = (idx === 0 || id === 'done');
+    if (qi >= 0) { count.textContent = (qi + 1) + ' / ' + qSteps.length; prog.style.width = (qi / qSteps.length * 100) + '%'; }
+    else if (id === 'review' || id === 'done') { count.textContent = id === 'done' ? '' : '✓'; prog.style.width = '100%'; }
+    else { count.textContent = ''; prog.style.width = '0%'; }
+    if (id === 'review') buildReview();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    var f = s.querySelector('input, textarea');
+    if (f && window.matchMedia('(hover: hover)').matches) setTimeout(function () { f.focus(); }, 120);
+  }
+
+  function next() {
+    var s = steps[idx];
+    if (s.hasAttribute('data-q') && !valid(s)) return;
+    if (returnToReview && s.hasAttribute('data-q')) { returnToReview = false; return show(steps.indexOf(stepById('review'))); }
+    show(idx + 1);
+  }
+
+  form.addEventListener('click', function (e) { if (e.target.closest('[data-next]')) next(); });
+  backBtn.addEventListener('click', function () { returnToReview = false; if (idx > 0) show(idx - 1); });
+  form.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' && e.target.tagName === 'INPUT') { e.preventDefault(); next(); }
+  });
+
+  function answers() {
+    var out = [
+      ['Full name', val('name'), 'contact'],
+      ['Email', val('email'), 'contact'],
+      ['Instagram / TikTok', val('handle'), 'contact']
+    ];
+    qSteps.forEach(function (s) {
+      if (s.dataset.id === 'contact') return;
+      var label = s.getAttribute('data-multi') || s.getAttribute('data-single') || s.getAttribute('data-text');
+      var a = s.hasAttribute('data-text') ? s.querySelector('textarea').value.trim() : picked(s).join('; ');
+      out.push([label, a, s.dataset.id]);
+    });
+    return out;
+  }
+
+  function esc(t) { return t.replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+  function buildReview() {
+    var box = document.getElementById('review'); box.innerHTML = '';
+    answers().forEach(function (r) {
+      var row = document.createElement('div'); row.className = 'row';
+      row.innerHTML = '<div class="q">' + esc(r[0]) + '</div><div class="a">' + esc(r[1] || '(left blank)') + '</div><button type="button">Edit</button>';
+      row.querySelector('button').addEventListener('click', function () { returnToReview = true; show(steps.indexOf(stepById(r[2]))); });
+      box.appendChild(row);
+    });
+  }
+
+  form.addEventListener('submit', function (e) {
     e.preventDefault();
-    if (!validate()) return;
-    lastBody = buildBody();
-    send();
+    var btn = document.getElementById('send'), err = document.getElementById('sendErr');
+    var payload = { _subject: 'Business Coaching Application | ' + val('name'), _replyto: val('email'), _template: 'box', _captcha: 'false' };
+    answers().forEach(function (r) { payload[r[0].toUpperCase()] = r[1] || '(left blank)'; });
+    btn.disabled = true; btn.textContent = 'Sending...'; err.textContent = '';
+    fetch('https://formsubmit.co/ajax/' + TO_EMAIL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    }).then(function (res) {
+      return res.json().catch(function () { return {}; }).then(function (data) {
+        if (!res.ok || String(data.success) === 'false') throw new Error('fail');
+        show(steps.indexOf(stepById('done')));
+      });
+    }).catch(function () {
+      err.innerHTML = "That didn't send. Please check your connection and try again, or email me at <span class=\"email\">luana@luanaspirits.com</span>.";
+    }).then(function () { btn.disabled = false; btn.textContent = 'Submit my application 💜'; });
   });
 
-  document.getElementById("retry").addEventListener("click", send);
-
-  document.getElementById("copy").addEventListener("click", async () => {
-    const toast = document.getElementById("toast");
-    const text = "Business Coaching Application | " + val("name") + "\n\n" + lastBody;
-    try { await navigator.clipboard.writeText(text); toast.textContent = "Copied! Paste it into an email to " + TO_EMAIL; }
-    catch (err) {
-      const ta = document.createElement("textarea"); ta.value = text; document.body.appendChild(ta); ta.select();
-      try { document.execCommand("copy"); toast.textContent = "Copied! Paste it into an email to " + TO_EMAIL; }
-      catch (e2) { toast.textContent = "Couldn't copy automatically. Please email your answers to " + TO_EMAIL; }
-      ta.remove();
-    }
-  });
-
-  document.getElementById("back").addEventListener("click", () => {
-    failed.style.display = "none"; form.style.display = "block"; window.scrollTo({top:0, behavior:"smooth"});
-  });
+  show(0);
+})();
 </script>
 </body>
 </html>
