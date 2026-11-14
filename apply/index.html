@@ -40,8 +40,8 @@
   button{font:inherit;font-weight:600;border:0;border-radius:999px;padding:15px 30px;cursor:pointer}
   .primary{background:var(--accent);color:#fff;font-size:17px;width:100%;max-width:420px}
   .primary:hover{background:var(--accent-dark)}
-  .btnlink{display:inline-block;text-decoration:none;border-radius:999px;padding:15px 30px;margin:6px 0 4px}
-  #copy{margin-top:4px}
+  .primary:disabled{opacity:.6;cursor:wait}
+    #copy{margin-top:4px}
   .secondary{background:transparent;color:var(--accent-dark);text-decoration:underline;padding:10px}
   .note{color:var(--muted);font-size:14px;margin-top:12px}
   .done{display:none;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px 22px;text-align:center;margin-top:18px}
@@ -57,7 +57,7 @@
     <div class="brand">Luana Spirits 🌙</div>
     <h1>Spiritual Business Coaching Application</h1>
     <p class="intro">Hi beautiful soul, welcome! 💜 This application helps me get to know you, your gifts, and where you are in building your spiritual business. I only take on a small number of one-to-one clients so I can give each of them my full attention, so please answer honestly. There are no wrong answers.</p>
-    <div class="how"><b>How it works:</b> fill in the questions below, then tap <b>Send my application</b>. You'll get a button that opens your email with your answers already written. Just press send, and I'll personally reply within 48 hours if it feels like an aligned fit.</div>
+    <div class="how"><b>How it works:</b> fill in the questions below, then tap <b>Send my application</b>. Your answers come straight to my inbox, and I'll personally reply within 48 hours if it feels like an aligned fit.</div>
   </header>
 
   <form id="app" novalidate>
@@ -189,16 +189,21 @@
 
     <div class="actions">
       <button type="submit" class="primary">Send my application 💜</button>
-      <p class="note">Next you'll open your email with everything filled in. Just press send.</p>
+      <p class="note">Your answers go straight to my inbox. Nothing else to do!</p>
     </div>
   </form>
 
   <div class="done" id="done">
-    <h2>Almost there, beautiful soul!</h2>
-    <p>Tap below to open your email with your application already written, then <b>press send</b>.</p>
-    <a class="primary btnlink" id="mail" href="#">Open my email 💌</a>
-    <p class="note">Email didn't open? Copy your answers and email them to<br><span class="addr" id="addr"></span></p>
-    <button type="button" class="primary" id="copy" style="background:var(--soft);color:var(--accent-dark)">Copy my answers</button>
+    <h2>Thank you, beautiful soul! 💜</h2>
+    <p>Your application has been sent straight to my inbox. I'll personally read your answers and reach out within 48 hours if it feels like an aligned fit.</p>
+    <p>Sending you so much love on your journey. 🌙</p>
+  </div>
+
+  <div class="done" id="failed">
+    <h2>Hmm, that didn't send</h2>
+    <p>Please check your connection and try again. If it still won't go through, copy your answers and email them to<br><span class="addr" id="addr"></span></p>
+    <button type="button" class="primary" id="retry">Try again</button>
+    <button type="button" class="primary" id="copy" style="background:var(--soft);color:var(--accent-dark);margin-top:10px">Copy my answers</button>
     <div class="toast" id="toast"></div>
     <button type="button" class="secondary" id="back">Go back and edit</button>
   </div>
@@ -261,32 +266,54 @@
     return lines.join("\n");
   }
 
+  const failed = document.getElementById("failed");
+  const submitBtn = form.querySelector('button[type="submit"]');
+
+  async function send(){
+    const subject = "Business Coaching Application | " + val("name");
+    const payload = { _subject: subject, _template: "box", _captcha: "false" };
+    sections.forEach(([label, get]) => { payload[label.toUpperCase()] = get() || "(left blank)"; });
+    submitBtn.disabled = true; submitBtn.textContent = "Sending...";
+    try {
+      const res = await fetch("https://formsubmit.co/ajax/" + TO_EMAIL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || String(data.success) === "false") throw new Error(data.message || "send failed");
+      form.style.display = "none"; failed.style.display = "none"; done.style.display = "block";
+    } catch (err) {
+      form.style.display = "none"; done.style.display = "none"; failed.style.display = "block";
+    } finally {
+      submitBtn.disabled = false; submitBtn.textContent = "Send my application 💜";
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+  }
+
   form.addEventListener("submit", e => {
     e.preventDefault();
     if (!validate()) return;
     lastBody = buildBody();
-    const subject = "Business Coaching Application | " + val("name");
-    const href = "mailto:" + TO_EMAIL + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(lastBody);
-    document.getElementById("mail").href = href;
-    form.style.display = "none";
-    done.style.display = "block";
-    window.scrollTo({top:0, behavior:"smooth"});
+    send();
   });
+
+  document.getElementById("retry").addEventListener("click", send);
 
   document.getElementById("copy").addEventListener("click", async () => {
     const toast = document.getElementById("toast");
-    const text = "Subject: Business Coaching Application | " + val("name") + "\n\n" + lastBody;
+    const text = "Business Coaching Application | " + val("name") + "\n\n" + lastBody;
     try { await navigator.clipboard.writeText(text); toast.textContent = "Copied! Paste it into an email to " + TO_EMAIL; }
     catch (err) {
       const ta = document.createElement("textarea"); ta.value = text; document.body.appendChild(ta); ta.select();
       try { document.execCommand("copy"); toast.textContent = "Copied! Paste it into an email to " + TO_EMAIL; }
-      catch (e2) { toast.textContent = "Couldn't copy automatically. Please select and copy your answers."; }
+      catch (e2) { toast.textContent = "Couldn't copy automatically. Please email your answers to " + TO_EMAIL; }
       ta.remove();
     }
   });
 
   document.getElementById("back").addEventListener("click", () => {
-    done.style.display = "none"; form.style.display = "block"; window.scrollTo({top:0, behavior:"smooth"});
+    failed.style.display = "none"; form.style.display = "block"; window.scrollTo({top:0, behavior:"smooth"});
   });
 </script>
 </body>
