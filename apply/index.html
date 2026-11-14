@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spiritual Business Coaching Application | Luana Spirits</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f7f3fb; --card:#ffffff; --ink:#2a2140; --muted:#6b6283;
+    --accent:#6b46a8; --accent-dark:#4f3283; --soft:#ece4f7; --line:#ddd3ec; --error:#b3261e;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;font-size:16px;line-height:1.55}
+  .wrap{max-width:680px;margin:0 auto;padding:40px 20px 80px}
+  header{text-align:center;margin-bottom:28px}
+  .brand{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:600}
+  h1{font-family:"Cormorant Garamond",serif;font-weight:600;font-size:40px;line-height:1.1;margin:10px 0 14px}
+  .intro{color:var(--muted);max-width:540px;margin:0 auto}
+  .how{background:var(--soft);border-radius:14px;padding:16px 18px;margin:24px 0 8px;font-size:15px}
+  .how b{color:var(--accent-dark)}
+  form{margin-top:16px}
+  fieldset{border:1px solid var(--line);background:var(--card);border-radius:16px;padding:22px 20px 8px;margin:0 0 18px}
+  legend{font-family:"Cormorant Garamond",serif;font-size:24px;font-weight:600;padding:0 8px}
+  .q{margin-bottom:22px}
+  .q > label, .q > .label{display:block;font-weight:600;margin-bottom:8px}
+  .req{color:var(--accent)}
+  .hint{display:block;font-weight:400;color:var(--muted);font-size:14px;margin-top:2px}
+  input[type=text],input[type=email],textarea{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:10px;font:inherit;color:inherit;background:#fdfcff}
+  textarea{min-height:96px;resize:vertical}
+  input:focus,textarea:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:transparent}
+  .opt{display:flex;gap:10px;align-items:flex-start;padding:9px 12px;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;cursor:pointer;background:#fdfcff}
+  .opt:hover{border-color:var(--accent)}
+  .opt input{margin-top:4px;accent-color:var(--accent)}
+  .q.invalid input[type=text],.q.invalid input[type=email],.q.invalid textarea,.q.invalid .opt{border-color:var(--error)}
+  .err{color:var(--error);font-size:14px;margin-top:4px;display:none}
+  .q.invalid .err{display:block}
+  .actions{text-align:center;margin-top:10px}
+  button{font:inherit;font-weight:600;border:0;border-radius:999px;padding:15px 30px;cursor:pointer}
+  .primary{background:var(--accent);color:#fff;font-size:17px;width:100%;max-width:420px}
+  .primary:hover{background:var(--accent-dark)}
+  .btnlink{display:inline-block;text-decoration:none;border-radius:999px;padding:15px 30px;margin:6px 0 4px}
+  #copy{margin-top:4px}
+  .secondary{background:transparent;color:var(--accent-dark);text-decoration:underline;padding:10px}
+  .note{color:var(--muted);font-size:14px;margin-top:12px}
+  .done{display:none;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px 22px;text-align:center;margin-top:18px}
+  .done h2{font-family:"Cormorant Garamond",serif;font-size:30px;margin:0 0 8px}
+  .done .addr{font-weight:600;color:var(--accent-dark);word-break:break-all}
+  .toast{color:var(--accent-dark);font-weight:600;min-height:22px;margin-top:6px}
+  footer{text-align:center;color:var(--muted);font-size:13px;margin-top:30px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">Luana Spirits 🌙</div>
+    <h1>Spiritual Business Coaching Application</h1>
+    <p class="intro">Hi beautiful soul, welcome! 💜 This application helps me get to know you, your gifts, and where you are in building your spiritual business. I only take on a small number of one-to-one clients so I can give each of them my full attention, so please answer honestly. There are no wrong answers.</p>
+    <div class="how"><b>How it works:</b> fill in the questions below, then tap <b>Send my application</b>. You'll get a button that opens your email with your answers already written. Just press send, and I'll personally reply within 48 hours if it feels like an aligned fit.</div>
+  </header>
+
+  <form id="app" novalidate>
+    <fieldset>
+      <legend>About you</legend>
+      <div class="q" data-required>
+        <label for="name">Full name <span class="req">*</span></label>
+        <input type="text" id="name" name="Full name" autocomplete="name">
+        <div class="err">Please share your name.</div>
+      </div>
+      <div class="q" data-required>
+        <label for="handle">Instagram or TikTok handle <span class="req">*</span></label>
+        <input type="text" id="handle" name="Instagram or TikTok handle" placeholder="@yourhandle">
+        <div class="err">Please add your handle so I can find you.</div>
+      </div>
+      <div class="q">
+        <label for="tz">Where are you located / what time zone are you in?</label>
+        <input type="text" id="tz" name="Location / time zone">
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Your gifts</legend>
+      <div class="q" data-required data-group="gifts">
+        <div class="label">What spiritual gifts or services do you want to offer? <span class="req">*</span><span class="hint">Choose all that apply.</span></div>
+        <label class="opt"><input type="checkbox" name="gifts" value="Intuitive / psychic readings">Intuitive / psychic readings</label>
+        <label class="opt"><input type="checkbox" name="gifts" value="Tarot or oracle readings">Tarot or oracle readings</label>
+        <label class="opt"><input type="checkbox" name="gifts" value="Mediumship">Mediumship</label>
+        <label class="opt"><input type="checkbox" name="gifts" value="Energy healing">Energy healing</label>
+        <label class="opt"><input type="checkbox" name="gifts" value="Twin flame or relationship coaching">Twin flame or relationship coaching</label>
+        <label class="opt"><input type="checkbox" name="gifts" value="Spiritual / life coaching">Spiritual / life coaching</label>
+        <label class="opt"><input type="checkbox" name="gifts" value="Bodywork or holistic practice">Bodywork or holistic practice</label>
+        <label class="opt"><input type="checkbox" name="gifts" value="Other">Other</label>
+        <div class="err">Please choose at least one.</div>
+      </div>
+      <div class="q" data-required>
+        <label for="journey">Tell me a little about your gift and your journey so far. <span class="req">*</span></label>
+        <textarea id="journey" name="Your gift and journey"></textarea>
+        <div class="err">Please share a little about your journey.</div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Where you are right now</legend>
+      <div class="q" data-required data-group="stage">
+        <div class="label">Which best describes your business right now? <span class="req">*</span></div>
+        <label class="opt"><input type="radio" name="stage" value="Haven't started, haven't charged yet">I haven't started yet and haven't charged for my spiritual work</label>
+        <label class="opt"><input type="radio" name="stage" value="Some sessions, mostly free">I've done some sessions, but mostly for free</label>
+        <label class="opt"><input type="radio" name="stage" value="A few paying clients">I've had a few paying clients</label>
+        <label class="opt"><input type="radio" name="stage" value="Consistent paying clients, want to grow">I have consistent paying clients and want to grow</label>
+        <div class="err">Please choose one.</div>
+      </div>
+      <div class="q" data-required data-group="content">
+        <div class="label">How do you feel about showing up on social media and creating content? <span class="req">*</span></div>
+        <label class="opt"><input type="radio" name="content" value="Already post regularly">I already post regularly</label>
+        <label class="opt"><input type="radio" name="content" value="Posted a little, want consistency">I've posted a little but want to be more consistent</label>
+        <label class="opt"><input type="radio" name="content" value="Haven't started, ready to">I haven't started, but I'm ready to</label>
+        <label class="opt"><input type="radio" name="content" value="Not comfortable being visible">I'm not comfortable being visible online</label>
+        <div class="err">Please choose one.</div>
+      </div>
+      <div class="q" data-required>
+        <label for="block">What feels like the biggest thing holding you back right now? <span class="req">*</span></label>
+        <textarea id="block" name="Biggest block"></textarea>
+        <div class="err">Please share what's holding you back.</div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Your vision</legend>
+      <div class="q" data-required data-group="model">
+        <div class="label">How do you see yourself working with clients? <span class="req">*</span><span class="hint">Choose all that apply.</span></div>
+        <label class="opt"><input type="checkbox" name="model" value="One-time sessions or readings">One-time sessions or readings</label>
+        <label class="opt"><input type="checkbox" name="model" value="Packages or multi-session programs">Packages or multi-session programs</label>
+        <label class="opt"><input type="checkbox" name="model" value="Longer-term coaching containers">Longer-term coaching containers</label>
+        <label class="opt"><input type="checkbox" name="model" value="Memberships or subscriptions">Memberships or subscriptions</label>
+        <label class="opt"><input type="checkbox" name="model" value="Courses or digital products">Courses or digital products</label>
+        <label class="opt"><input type="checkbox" name="model" value="Open to guidance">I'm open to guidance on what's best</label>
+        <div class="err">Please choose at least one.</div>
+      </div>
+      <div class="q" data-required>
+        <label for="goal">What would make the next 90 days a huge success for you? <span class="req">*</span></label>
+        <textarea id="goal" name="90-day success"></textarea>
+        <div class="err">Please share your 90-day vision.</div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Commitment and readiness</legend>
+      <div class="q" data-required data-group="commit">
+        <div class="label">My business coaching is a 3-month container with two coaching calls a month and voice memo support on WhatsApp between calls. Are you able to commit to 3 months right now? <span class="req">*</span></div>
+        <label class="opt"><input type="radio" name="commit" value="Yes, ready to commit">Yes, I'm ready to commit</label>
+        <label class="opt"><input type="radio" name="commit" value="Interested but not sure">I'm interested but not sure yet</label>
+        <label class="opt"><input type="radio" name="commit" value="No, not right now">No, not right now</label>
+        <div class="err">Please choose one.</div>
+      </div>
+      <div class="q" data-required data-group="start">
+        <div class="label">When would you like to start? <span class="req">*</span></div>
+        <label class="opt"><input type="radio" name="start" value="As soon as possible">As soon as possible</label>
+        <label class="opt"><input type="radio" name="start" value="Within 30 days">Within the next 30 days</label>
+        <label class="opt"><input type="radio" name="start" value="In 1 to 3 months">In 1 to 3 months</label>
+        <label class="opt"><input type="radio" name="start" value="Just exploring">I'm just exploring for now</label>
+        <div class="err">Please choose one.</div>
+      </div>
+      <div class="q" data-required data-group="invested">
+        <div class="label">Have you invested in coaching, mentorship, courses or healing support before? <span class="req">*</span></div>
+        <label class="opt"><input type="radio" name="invested" value="Yes, more than once">Yes, more than once</label>
+        <label class="opt"><input type="radio" name="invested" value="Yes, once">Yes, once</label>
+        <label class="opt"><input type="radio" name="invested" value="Not yet, ready to invest">Not yet, but I'm ready to invest in myself</label>
+        <label class="opt"><input type="radio" name="invested" value="No, not looking to invest">No, and I'm not looking to invest right now</label>
+        <div class="err">Please choose one.</div>
+      </div>
+      <div class="q" data-required data-group="ready">
+        <div class="label">If we're an aligned fit, are you in a position to invest in yourself and your business right now? <span class="req">*</span></div>
+        <label class="opt"><input type="radio" name="ready" value="Yes">Yes</label>
+        <label class="opt"><input type="radio" name="ready" value="Yes, with a payment plan">Yes, with a payment plan</label>
+        <label class="opt"><input type="radio" name="ready" value="Not at this time">Not at this time</label>
+        <div class="err">Please choose one.</div>
+      </div>
+      <div class="q" data-required>
+        <label for="why">Why is now the right time for you? <span class="req">*</span></label>
+        <textarea id="why" name="Why now"></textarea>
+        <div class="err">Please share why now feels right.</div>
+      </div>
+      <div class="q">
+        <label for="else">Is there anything else you'd like me to know?</label>
+        <textarea id="else" name="Anything else"></textarea>
+      </div>
+    </fieldset>
+
+    <div class="actions">
+      <button type="submit" class="primary">Send my application 💜</button>
+      <p class="note">Next you'll open your email with everything filled in. Just press send.</p>
+    </div>
+  </form>
+
+  <div class="done" id="done">
+    <h2>Almost there, beautiful soul!</h2>
+    <p>Tap below to open your email with your application already written, then <b>press send</b>.</p>
+    <a class="primary btnlink" id="mail" href="#">Open my email 💌</a>
+    <p class="note">Email didn't open? Copy your answers and email them to<br><span class="addr" id="addr"></span></p>
+    <button type="button" class="primary" id="copy" style="background:var(--soft);color:var(--accent-dark)">Copy my answers</button>
+    <div class="toast" id="toast"></div>
+    <button type="button" class="secondary" id="back">Go back and edit</button>
+  </div>
+
+  <footer>© Luana Spirits</footer>
+</div>
+
+<script>
+  const TO_EMAIL = "Luana@luanaspirits.com";
+
+  const form = document.getElementById("app");
+  const done = document.getElementById("done");
+  document.getElementById("addr").textContent = TO_EMAIL;
+  let lastBody = "";
+
+  const sections = [
+    ["Full name", () => val("name")],
+    ["Handle", () => val("handle")],
+    ["Location / time zone", () => val("tz")],
+    ["Gifts / services", () => multi("gifts")],
+    ["Gift and journey", () => val("journey")],
+    ["Business stage", () => one("stage")],
+    ["Content comfort", () => one("content")],
+    ["Biggest block", () => val("block")],
+    ["How they want to work with clients", () => multi("model")],
+    ["90-day success", () => val("goal")],
+    ["Can commit to 3 months", () => one("commit")],
+    ["Start timeline", () => one("start")],
+    ["Invested in support before", () => one("invested")],
+    ["Ready to invest now", () => one("ready")],
+    ["Why now", () => val("why")],
+    ["Anything else", () => val("else")]
+  ];
+
+  function val(id){ return document.getElementById(id).value.trim(); }
+  function one(n){ const el = form.querySelector('input[name="'+n+'"]:checked'); return el ? el.value : ""; }
+  function multi(n){ return [...form.querySelectorAll('input[name="'+n+'"]:checked')].map(e => e.value).join("; "); }
+
+  function validate(){
+    let firstBad = null;
+    form.querySelectorAll(".q[data-required]").forEach(q => {
+      const g = q.dataset.group;
+      let ok;
+      if (g) ok = !!q.querySelector("input:checked");
+      else { const f = q.querySelector("input,textarea"); ok = f.value.trim() !== ""; }
+      q.classList.toggle("invalid", !ok);
+      if (!ok && !firstBad) firstBad = q;
+    });
+    if (firstBad) firstBad.scrollIntoView({behavior:"smooth", block:"center"});
+    return !firstBad;
+  }
+
+  form.addEventListener("input", e => { const q = e.target.closest(".q"); if (q) q.classList.remove("invalid"); });
+  form.addEventListener("change", e => { const q = e.target.closest(".q"); if (q) q.classList.remove("invalid"); });
+
+  function buildBody(){
+    const lines = ["BUSINESS COACHING APPLICATION", ""];
+    sections.forEach(([label, get]) => { lines.push(label.toUpperCase() + ": " + (get() || "(left blank)")); lines.push(""); });
+    lines.push("Sent from the Luana Spirits coaching application page");
+    return lines.join("\n");
+  }
+
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    if (!validate()) return;
+    lastBody = buildBody();
+    const subject = "Business Coaching Application | " + val("name");
+    const href = "mailto:" + TO_EMAIL + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(lastBody);
+    document.getElementById("mail").href = href;
+    form.style.display = "none";
+    done.style.display = "block";
+    window.scrollTo({top:0, behavior:"smooth"});
+  });
+
+  document.getElementById("copy").addEventListener("click", async () => {
+    const toast = document.getElementById("toast");
+    const text = "Subject: Business Coaching Application | " + val("name") + "\n\n" + lastBody;
+    try { await navigator.clipboard.writeText(text); toast.textContent = "Copied! Paste it into an email to " + TO_EMAIL; }
+    catch (err) {
+      const ta = document.createElement("textarea"); ta.value = text; document.body.appendChild(ta); ta.select();
+      try { document.execCommand("copy"); toast.textContent = "Copied! Paste it into an email to " + TO_EMAIL; }
+      catch (e2) { toast.textContent = "Couldn't copy automatically. Please select and copy your answers."; }
+      ta.remove();
+    }
+  });
+
+  document.getElementById("back").addEventListener("click", () => {
+    done.style.display = "none"; form.style.display = "block"; window.scrollTo({top:0, behavior:"smooth"});
+  });
+</script>
+</body>
+</html>
